@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.title}">Grāmatas nosaukums</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main>
+    <h1 th:text="${book.title}"></h1>
+    <p><strong>Autors:</strong> <span th:text="${book.author}"></span></p>
+    <p><strong>Izdošanas gads:</strong> <span th:text="${book.publicationYear}"></span></p>
+    <p><strong>Kategorija:</strong> <span th:text="${book.category.name}"></span></p>
+
+    <h2>Apraksts</h2>
+    <p class="description"
+       th:text="${#strings.isEmpty(book.description) ? 'Apraksts nav pievienots.' : book.description}">
+    </p>
+
+    <p><a th:href="@{/books}">Atpakaļ uz sarakstu</a></p>
+</main>
+</body>
+</html>

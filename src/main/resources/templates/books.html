@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Grāmatu katalogs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<main>
+    <h1>Grāmatu katalogs</h1>
+
+    <div th:if="${param.created}" class="success">
+        Grāmata veiksmīgi pievienota.
+    </div>
+
+    <div th:if="${param.notFound}" class="error">
+        Grāmata ar norādīto ID netika atrasta.
+    </div>
+
+    <p><a th:href="@{/books/new}">Pievienot grāmatu</a></p>
+
+    <form method="get" th:action="@{/books}">
+        <label for="categoryId">Kategorija</label>
+        <select id="categoryId" name="categoryId">
+            <option value="">Visas kategorijas</option>
+            <option th:each="c : ${categories}"
+                    th:value="${c.id}"
+                    th:text="${c.name}"
+                    th:selected="${c.id == selectedCategoryId}">
+            </option>
+        </select>
+        <button type="submit">Atlasīt</button>
+    </form>
+
+    <div th:if="${#lists.isEmpty(books)}">
+        <p>Grāmatu nav.</p>
+    </div>
+
+    <table th:if="${!#lists.isEmpty(books)}">
+        <thead>
+        <tr>
+            <th>Nosaukums</th>
+            <th>Autors</th>
+            <th>Gads</th>
+            <th>Kategorija</th>
+            <th>Darbība</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${books}">
+            <td th:text="${b.title}"></td>
+            <td th:text="${b.author}"></td>
+            <td th:text="${b.publicationYear}"></td>
+            <td th:text="${b.category.name}"></td>
+            <td><a th:href="@{/books/{id}(id=${b.id})}">Apskatīt</a></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
