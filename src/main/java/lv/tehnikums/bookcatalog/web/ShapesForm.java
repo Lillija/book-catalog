@@ -2,7 +2,7 @@ package lv.tehnikums.bookcatalog.web;
 
 import jakarta.validation.constraints.*;
 
-public class BookForm {
+public class ShapesForm {
 
     @NotBlank(message = "Ievadiet nosaukumu.")
     @Size(max = 200, message = "Ne vairāk kā 200 rakstzīmes.")

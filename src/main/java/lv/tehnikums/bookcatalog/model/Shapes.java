@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class Shapes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Book {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    public Book() {}
+    public Shapes() {}
 
     public Integer getId() {
         return id;

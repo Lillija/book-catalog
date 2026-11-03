@@ -5,15 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import lv.tehnikums.bookcatalog.service.BookService;
-import lv.tehnikums.bookcatalog.web.BookForm;
+import lv.tehnikums.bookcatalog.service.ShapesService;
+import lv.tehnikums.bookcatalog.web.ShapesForm;
 
 @Controller
-public class BookController {
+public class ShapesController {
 
-    private final BookService service;
+    private final ShapesService service;
 
-    public BookController(BookService service) {
+    public ShapesController(ShapesService service) {
         this.service = service;
     }
 
@@ -42,13 +42,13 @@ public class BookController {
 
     @GetMapping("/books/new")
     public String form(Model model) {
-        model.addAttribute("bookForm", new BookForm());
+        model.addAttribute("bookForm", new ShapesForm());
         model.addAttribute("categories", service.getCategories());
         return "book-form";
     }
 
     @PostMapping("/books")
-    public String create(@Valid @ModelAttribute("bookForm") BookForm form,
+    public String create(@Valid @ModelAttribute("bookForm") ShapesForm form,
                          BindingResult result, Model model) {
         if (!result.hasErrors()) {
             try {

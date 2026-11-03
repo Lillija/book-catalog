@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import lv.tehnikums.bookcatalog.model.Book;
+import lv.tehnikums.bookcatalog.model.Shapes;
 
-public interface BookRepository extends JpaRepository<Book, Integer> {
-
-    @EntityGraph(attributePaths = "category")
-    List<Book> findAllByOrderByTitleAsc();
+public interface ShapesRepository extends JpaRepository<Shapes, Integer> {
 
     @EntityGraph(attributePaths = "category")
-    List<Book> findByCategory_IdOrderByTitleAsc(Integer categoryId);
+    List<Shapes> findAllByOrderByTitleAsc();
+
+    @EntityGraph(attributePaths = "category")
+    List<Shapes> findByCategory_IdOrderByTitleAsc(Integer categoryId);
 
     @Override
     @EntityGraph(attributePaths = "category")
-    Optional<Book> findById(Integer id);
+    Optional<Shapes> findById(Integer id);
 }
